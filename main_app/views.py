@@ -3,11 +3,12 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.utils.safestring import mark_safe
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event, Comment
 from .forms import EventForm, CommentForm
+from django.template.loader import render_to_string
 
 
 # Create your views here.
@@ -129,7 +130,8 @@ def new_comment(request, event_id):
 
 # <---------Liking an event--------->
 def like_event(request):
-    event = get_object_or_404(Event, id=request.POST.get('event_id'))
+    # event = get_object_or_404(Event, id=request.POST.get('event_id'))
+    event = get_object_or_404(Event, id=request.POST.get('id'))
     is_liked = False
     if event.likes.filter(id=request.user.id).exists():
         event.likes.remove(request.user)
@@ -137,4 +139,11 @@ def like_event(request):
     else:
         event.likes.add(request.user)
         is_liked = True
-    return HttpResponseRedirect(event.get_absolute_url())
+    context = {
+        'event': event,
+        'is_liked': is_liked,
+        'total_likes': event.total_likes(),
+    }
+    if request.is_ajax():
+        html = render_to_string('event/like_section.html', context, request=request)
+        return JsonResponse({'form':html})
