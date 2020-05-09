@@ -1,10 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.safestring import mark_safe
-from .models import Event
-from .forms import EventForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Event, Comment
+from .forms import EventForm, CommentForm
 
 
 # Create your views here.
@@ -13,30 +16,52 @@ def home(request):
     return render(request, 'home.html')
 
 def index(request):
-    event = Event.objects.filter(user=request.user)
+    #is there a way I can filter based on user
+    # event = Event.objects.filter(user=request.user).filter(#filter by date or other parameters)
+    event = Event.objects.all()
     return render(request, 'event/index.html', {'event': event})
 
 def about(request):
     return render(request, 'about.html')
 
 # <---------Viewing Event Details--------->
+@login_required
 def event_detail(request, event_id):
     event = Event.objects.get(id=event_id)
-    context = {'event': event}
-    return render(request,'event/detail.html', context)
 
+    is_liked = False
+    if event.likes.filter(id=request.user.id).exists():
+        is_liked = True
+
+    comment= Comment.objects.filter(event_id = event_id)
+    comment_form = CommentForm()
+    context = {
+    'event': event,
+    'comment': comment,
+    'comment_form': comment_form,
+    'total_likes': event.total_likes(),
+    'is_liked': is_liked,
+    }
+    return render(request,'event/detail.html', context)
 
 # <---------Creating an Event--------->
 
 @login_required
 def new_event(request):
     if request.method =='POST':
+        print("form")
         form = EventForm(request.POST)
+        print(form)
         if form.is_valid():
             event = form.save(commit=False)
+            print("EVENT BEFORE SAVE")
+            print(event)
             event.user = request.user
             event.save()
-        return redirect('detail', event.id)
+            print("EVENT AFTER SAVE")
+            print(event)
+            # print(event.id)
+        return redirect('index')
     else:
         form = EventForm()
     context = {'form': form}
@@ -63,7 +88,6 @@ def delete_event(request, event_id):
     Event.objects.get(id=event_id).delete()
     return redirect('index')
 
-
 # <-----Signing in--------->
 
 def signup(request):
@@ -85,30 +109,32 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+# <-----Comments--------->
+@login_required
+def new_comment(request, event_id):
+    if request.method =='POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            event = Event.objects.get(id = event_id)
+            print(event)
+            comment.event = event
+            comment.author = User.objects.get(id = request.user.id)
+            comment.save()
+        return redirect('detail', event.id)
+    else:
+        form = CommentForm()
+    context = {'form': form}
+    return render(request, 'comment/comment_form.html', context)
 
-
-
-
-
-    # attempt at building calendar
-
-# class ViewCalendar(generic.ListView):
-#     model = Event
-#     template_name = 'sricalendar/templates/calendar.html'
-#
-#     def context_data(self, **kwargs):
-#         context = super().context_data(**kwargs)
-#
-#         e = get_date(self.request.GET.get('day', None))
-#
-#         cal = Calendar(e.year, e.month)
-#
-#         html_cal = cal.monthformat(withyear=True)
-#         context['calendar'] = mark_safe(html_cal)
-#         return context
-#
-# def get_date(req_day):
-#     if req_day:
-#         year, month = (int(x) for x in req_day.split('-'))
-#         return date(year, month, day=1)
-#     return datetime.today()
+# <---------Liking an event--------->
+def like_event(request):
+    event = get_object_or_404(Event, id=request.POST.get('event_id'))
+    is_liked = False
+    if event.likes.filter(id=request.user.id).exists():
+        event.likes.remove(request.user)
+        is_liked=False
+    else:
+        event.likes.add(request.user)
+        is_liked = True
+    return HttpResponseRedirect(event.get_absolute_url())

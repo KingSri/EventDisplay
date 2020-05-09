@@ -20,8 +20,8 @@
         </ul>
         <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'index' %}">Index</a></li>
           {% if user.is_authenticated %}
-            <li><a href="{% url 'index' %}">Index</a></li>
             <li><a href="{% url 'new_event' %}">Create an Event</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
@@ -43,12 +43,9 @@
     <nav class = black>
       <div class="center">All Rights Reserved, &copy; Sri</div>
     </nav>
-    <script src="jquery-3.4.1.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <script>
-      document.getElementById()
-    </script>
 
 </body>
 </html>

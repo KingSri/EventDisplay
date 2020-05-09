@@ -10,6 +10,7 @@
     <div class="card">
       <a href="{% url 'detail' event.id %}">
         <div class="card-content">
+          <img src="{{event.image.url}}" width="240">
           <span class="card-title">{{ event.title }}</span>
           <p>Description: {{ event.description }}</p>
           <p>Start Time: {{ event.start_time }}</p>
