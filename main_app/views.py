@@ -29,19 +29,28 @@ def about(request):
 @login_required
 def event_detail(request, event_id):
     event = Event.objects.get(id=event_id)
+    comments = Comment.objects.filter(event=event).order_by('-id')
 
     is_liked = False
     if event.likes.filter(id=request.user.id).exists():
         is_liked = True
 
-    comment= Comment.objects.filter(event_id = event_id)
-    comment_form = CommentForm()
+    if request.method =='POST':
+        comment_form = CommentForm(request.POST or None)
+        if comment_form.is_valid():
+            content = request.POST.get('content')
+            comment = Comment.objects.create(event=event, user=request.user, content=content)
+            comment.save()
+            return HttpResponseRedirect(event.get_absolute_url())
+    else:
+        comment_form= CommentForm()
+
     context = {
     'event': event,
-    'comment': comment,
-    'comment_form': comment_form,
     'total_likes': event.total_likes(),
     'is_liked': is_liked,
+    'comments': comments,
+    'comment_form': comment_form,
     }
     return render(request,'event/detail.html', context)
 
@@ -111,22 +120,22 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 # <-----Comments--------->
-@login_required
-def new_comment(request, event_id):
-    if request.method =='POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            event = Event.objects.get(id = event_id)
-            print(event)
-            comment.event = event
-            comment.author = User.objects.get(id = request.user.id)
-            comment.save()
-        return redirect('detail', event.id)
-    else:
-        form = CommentForm()
-    context = {'form': form}
-    return render(request, 'comment/comment_form.html', context)
+# @login_required
+# def new_comment(request, event_id):
+#     if request.method =='POST':
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             comment = form.save(commit=False)
+#             event = Event.objects.get(id = event_id)
+#             print(event)
+#             comment.event = event
+#             comment.author = User.objects.get(id = request.user.id)
+#             comment.save()
+#         return redirect('detail', event.id)
+#     else:
+#         form = CommentForm()
+#     context = {'form': form}
+#     return render(request, 'comment/comment_form.html', context)
 
 # <---------Liking an event--------->
 def like_event(request):
@@ -147,3 +156,36 @@ def like_event(request):
     if request.is_ajax():
         html = render_to_string('event/like_section.html', context, request=request)
         return JsonResponse({'form':html})
+
+# Saved code below
+
+# for event detail (saving the comment forms from before)
+    # # comment= Comment.objects.filter(event_id = event_id)
+    # # comment_form = CommentForm()
+    # context = {
+    # 'event': event,
+    # 'comment': comment,
+    # 'comment_form': comment_form,
+    # 'total_likes': event.total_likes(),
+    # 'is_liked': is_liked,
+    # }
+
+# forms.py
+#
+# # class CommentForm(forms.ModelForm):
+# #     class Meta:
+# #         model = Comment
+# #         fields = ('body',)
+
+# admin.py
+# @admin.register(Comment)
+# class CommentAdmin(admin.ModelAdmin):
+#     list_display = ('body', 'created_on', 'event', 'author')
+#     list_filter = ('created_on', 'author')
+#     search_fields = ('body', 'author')
+
+    # path('new_comment/<int:event_id>/', views.new_comment, name='new_comment'),
+        # <!-- </div>
+        # <div class = "card">
+        #   <a href="{% url 'new_comment' event.id%}">Add a Comment</a>
+        #   </div> -->

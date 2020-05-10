@@ -28,16 +28,16 @@ class Event(models.Model):
 
 #Comments on Event
 class Comment(models.Model):
-    body = models.TextField(max_length=500)
-    created_on = models.DateTimeField(auto_now_add= True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField(max_length=500)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add= True)
 
     class Meta:
-        ordering = ['created_on']
+        ordering = ['timestamp']
 
     def __str__(self):
-        return 'Comment {} by {}'.format(self.body, self.author)
+        return '{}-{}'.format(self.event.title, str(self.user.username))
 
 
 # Event Registration

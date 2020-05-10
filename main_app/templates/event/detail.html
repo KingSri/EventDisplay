@@ -15,41 +15,69 @@
         {% include 'event/like_section.html' %}
         </div>
 
+      {% if event.user == request.user %}
 
       <div class="card-action">
         <a href="{% url 'update_event' event.id %}">Edit Event</a>
         <a href="{% url 'delete_event' event.id %}">Delete Event</a>
       </div>
+      {% endif %}
 
 
     </div>
 
 
-    <div class="card">
-            <!-- comments -->
-            <h3>{{ comment.count }} comments for {{event.title}} :</h3>
-            <h2>
-              {{comment.body}}
-            </h2>
+    <br><br>
+    <hr>
+    <form method='post'>
+      {%csrf_token%}
+      {{ comment_form.as_p}}
+      {% if request.user.is_authenticated %}
+      <input type="submit" value="submit" class="btn">
+      {% else %}
+      <input type="submit" value="submit" class="btn" disabled>
+      {% endif %}
+    </form>
 
-            {% for comment in comment %}
-            <div class="comments" style="padding: 10px;">
-              <p class="font-weight-bold">
-                <span class=" text-muted font-weight-normal">
-                  {{ comment.created_on }}
-                </span>
-              </p>
-              {{ comment.body | linebreaks }}
-            </div>
-            {% endfor %}
-          </div>
+    <div class = 'main-comment-section'>
+      {{comments.count}} Comment{{ comments|pluralize }}
+      {% for comment in comments %}
+      <blockquote>
+        <p class="mb-0">{{comment.content}}</p>
+        <footer class="blockquote-footer">-<cite> {{comment.user|capfirst}}</cite></footer>
+      </blockquote>
+      {% endfor %}
+
+      </div>
+
+    <!-- <div class='col s6'>
+      <div class="card">
+              <!-- comments -->
+              <!-- <h3>{{ comment.count }} comments for {{event.title}} :</h3>
+              <h2>
+                {{comment.body}}
+              </h2>
+
+              {% for comment in comment %}
+              <div class="comments" style="padding: 10px;">
+                <p class="font-weight-bold">
+                  <span class=" text-muted font-weight-normal">
+                    {{ comment.created_on }}
+                  </span>
+                </p>
+                {{ comment.body | linebreaks }}
+              </div>
+              {% endfor %}
+            </div> -->
+      <!-- </div> -->
 
 
-        </div>
-        <div class = "card">
-          <a href="{% url 'new_comment' event.id%}">Add a Comment</a>
-          </div>
 
+
+
+
+
+</div>
 </div>
 
 {% endblock %}
