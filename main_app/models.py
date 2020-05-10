@@ -13,7 +13,7 @@ class Event(models.Model):
     description= models.TextField()
     start_time= models.DateField()
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
-    photo = models.ImageField(default="default.png", blank=True)
+    photo = models.ImageField(default="default.jpg", blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
