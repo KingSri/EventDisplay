@@ -14,7 +14,6 @@ urlpatterns = [
     path('event/<int:event_id>/update/', views.update_event, name='update_event'),
     path('event/<int:event_id>/delete/', views.delete_event, name='delete_event'),
     url(r'^like/$', views.like_event, name='like_event'),
-    # <----------------Create a comment---------------->
 
     # <----------------Signup for an account---------------->
     path('accounts/signup', views.signup, name='signup'),

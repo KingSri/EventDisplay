@@ -119,24 +119,6 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-# <-----Comments--------->
-# @login_required
-# def new_comment(request, event_id):
-#     if request.method =='POST':
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-#             comment = form.save(commit=False)
-#             event = Event.objects.get(id = event_id)
-#             print(event)
-#             comment.event = event
-#             comment.author = User.objects.get(id = request.user.id)
-#             comment.save()
-#         return redirect('detail', event.id)
-#     else:
-#         form = CommentForm()
-#     context = {'form': form}
-#     return render(request, 'comment/comment_form.html', context)
-
 # <---------Liking an event--------->
 def like_event(request):
     # event = get_object_or_404(Event, id=request.POST.get('event_id'))
