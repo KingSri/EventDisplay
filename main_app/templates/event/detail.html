@@ -2,33 +2,42 @@
 {% load static %}
 {% block content %}
 
-<h1>Event Cache</h1>
+<h1>Information for: {{ event.title }}</h1>
+
+<!-- Card information -->
 
 <div class="row">
-  <div class="col s6">
-    <div class="card">
-      <div class="card-content">
-        <img src="{{event.photo.url}}"/>
+  <div class="col s12 m6">
+    <div class="card hoverable">
+  <!-- adding div like section -->
+
+      <div class="card-image">
+        <img class= "responsive-image" src="{{event.photo.url}}"/>
         <span class="card-title">{{ event.title }}</span>
+        <div id="like-section">
+          {% include 'event/like_section.html' %}
+          </div>
+          </div>
+      <div class="card-content">
+        <h6>Start Date: {{ event.start_date }}</h6>
+        <h6>City: {{ event.city }}</h6>
         <p>Description: {{ event.description }}</p>
-        <p>Start Time: {{ event.start_time }}</p>
-      </div>
-      <div id="like-section">
-        {% include 'event/like_section.html' %}
+
+        {% if event.user == request.user %}
+        <div class="card-action">
+          <a href="{% url 'update_event' event.id %}">Edit Event</a>
+          <a href="{% url 'delete_event' event.id %}">Delete Event</a>
         </div>
 
-      {% if event.user == request.user %}
-
-      <div class="card-action">
-        <a href="{% url 'update_event' event.id %}">Edit Event</a>
-        <a href="{% url 'delete_event' event.id %}">Delete Event</a>
+        {% endif %}
       </div>
-      {% endif %}
-
 
     </div>
 
 
+
+
+<!-- Comment section below -->
     <br><br>
     <hr>
     <form method='post'>
@@ -40,19 +49,23 @@
       <input type="submit" value="submit" class="btn" disabled>
       {% endif %}
     </form>
+    </div>
 
-    <div class = 'main-comment-section'>
+    <div class="col s12 m6 main-comment-section">
       {{comments.count}} Comment{{ comments|pluralize }}
       {% for comment in comments %}
-      <blockquote>
-        <p class="mb-0">{{comment.content}}</p>
-        <footer class="blockquote-footer">-<cite> {{comment.user|capfirst}}</cite></footer>
-      </blockquote>
+      <div class="card">
+        <blockquote>
+          <p class="mb-0">{{comment.content}}</p>
+          <footer class="blockquote-footer">-<cite> {{comment.user|capfirst}}</cite></footer>
+        </blockquote>
+        </div>
+
       {% endfor %}
 
       </div>
 
-</div>
+
 </div>
 
 {% endblock %}

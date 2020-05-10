@@ -3,9 +3,9 @@
 <form action="{% url 'like_event' %}" method="post">
   {% csrf_token %}
   {% if is_liked %}
-    <button id="like" type="submit" name="event_id" value="{{event.id}}" class="btn red darken-2">Dislike</button>
+    <a id="like" type="submit" name="event_id" value="{{event.id}}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a>
   {% else %}
-    <button id="like" type="submit" name="event_id" value="{{event.id}}" class="btn">Like</button>
+  <a id="like" type="submit" name="event_id" value="{{event.id}}" class="btn-floating halfway-fab waves-effect waves-light grey pulse" ><i class="material-icons">favorite_border</i></a>
   {% endif %}
 </form>
 {% endif %}

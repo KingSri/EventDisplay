@@ -10,8 +10,9 @@ from tempfile import NamedTemporaryFile
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
-    description= models.TextField()
-    start_time= models.DateField()
+    description = models.TextField()
+    start_date = models.DateField()
+    city = models.TextField()
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     photo = models.ImageField(default="default.jpg", blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
