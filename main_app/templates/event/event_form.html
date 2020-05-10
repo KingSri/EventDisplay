@@ -3,7 +3,7 @@
 {% block content %}
     <section class="form-section">
         <h1>Add an event</h1>
-        <form  method="POST" class="artist-form">
+        <form  method="POST" class="artist-form" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
             <button class="btn" type="submit">Save</button>

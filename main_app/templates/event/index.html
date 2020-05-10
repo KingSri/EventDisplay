@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
  <a href="{% url 'new_event' %}" onclick="M.toast({html: 'Redirecting: Create an event'})" class="btn-floating btn-large waves-effect waves-light right red"><i class="material-icons">+</i></a>
@@ -23,6 +24,7 @@
       <div class="card">
         <a href="{% url 'detail' event.id %}">
           <div class="card-content">
+            <img src="{{event.photo.url}}"/>
             <span class="card-title">{{ event.title }}</span>
             <p>Description: {{ event.description }}</p>
             <p>Start Time: {{ event.start_time }}</p>

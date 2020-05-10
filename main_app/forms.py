@@ -4,7 +4,7 @@ from .models import Event, Comment
 class EventForm(forms.ModelForm):
     class Meta:
         model=Event
-        fields = ('title', 'description', 'start_time', 'likes')
+        fields = ('title', 'description', 'start_time', 'likes', 'photo')
 
 class CommentForm(forms.ModelForm):
     class Meta:

@@ -60,7 +60,7 @@ def event_detail(request, event_id):
 def new_event(request):
     if request.method =='POST':
         print("form")
-        form = EventForm(request.POST)
+        form = EventForm(request.POST, request.FILES or None)
         print(form)
         if form.is_valid():
             event = form.save(commit=False)
@@ -83,7 +83,7 @@ def new_event(request):
 def update_event(request, event_id):
     event = Event.objects.get(id=event_id)
     if request.method =="POST":
-        form = EventForm(request.POST, instance=event)
+        form = EventForm(request.POST,request.FILES or None ,instance=event )
         if form.is_valid():
             event = form.save()
             return redirect('detail', event.id)

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <h1>Event Cache</h1>
@@ -7,6 +8,7 @@
   <div class="col s6">
     <div class="card">
       <div class="card-content">
+        <img src="{{event.photo.url}}"/>
         <span class="card-title">{{ event.title }}</span>
         <p>Description: {{ event.description }}</p>
         <p>Start Time: {{ event.start_time }}</p>
