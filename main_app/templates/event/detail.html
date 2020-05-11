@@ -2,13 +2,13 @@
 {% load static %}
 {% block content %}
 
-<h2>Information for: {{ event.title }}</h2>
+<h3>Information for: {{ event.title }}</h3>
 
 <!-- Card information -->
 
 <div class="row">
   <div class="col s12 m6">
-    <div class="card hoverable">
+    <div class="card hoverable yellow lighten-5" id="single-card">
   <!-- adding div like section -->
 
       <div class="card-image">
@@ -19,6 +19,7 @@
           </div>
           </div>
       <div class="card-content">
+        <h6>Hosted by: {{event.user}}</h6>
         <h6>Start Date: {{ event.start_date }}</h6>
         <h6>City: {{ event.city }}</h6>
         <p>Description: {{ event.description }}</p>

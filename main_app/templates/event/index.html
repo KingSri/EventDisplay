@@ -8,14 +8,15 @@
 {% for event in event %}
 <div class="row">
     <div class="col s4 m4">
-      <div class="card hoverable">
+      <div class="card hoverable yellow lighten-5" id="generate-cards">
         <div class="card-image">
           <img class= "responsive-image" src="{{event.photo.url}}"/>
           <span class="card-title">{{ event.title }}</span>
         </div>
         <div class="card-content">
-          <h6>Location: {{ event.city }}</h6>
-          <h6>Starting on: {{ event.start_date }}</h6>
+          <p>Hosted by: {{event.user}}</p>
+          <p>Location: {{ event.city }}</p>
+          <p>Starting on: {{ event.start_date }}</p>
         </div>
         <div class="card-action">
           <a href="{% url 'detail' event.id %}"> Event Details
