@@ -11,12 +11,87 @@ main {
   background-color: black
 }
 
-#test h1{
-    animation: fadein 2s;
+/* Animations: */
+
+#index-banner h1 {
+  animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+
+}
+#index-banner h5 {
+  animation: fadein 2s;
+  animation-delay: 3s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -moz-animation-delay: 3s; /* Firefox */
+    -webkit-animation: fadein 2s;
+    -webkit-animation-delay: 3s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+
+
+/* Animations: about page */
+#first h6 {
+  animation: fadein 2s;
     -moz-animation: fadein 2s; /* Firefox */
     -webkit-animation: fadein 2s; /* Safari and Chrome */
     -o-animation: fadein 2s; /* Opera */
 }
+
+#first blockquote {
+  animation: fadein 2s;
+  animation-delay: 3s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -moz-animation-delay: 3s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -webkit-animation-delay: 3s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+
+#second h6 {
+  animation: fadein 2s;
+  animation-delay: 8s;
+    -moz-animation: fadein 2s; /* Firefox */
+      -moz-animation-delay: 8s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -webkit-animation-delay: 8s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+
+#second blockquote {
+  animation: fadein 2s;
+  animation-delay: 10s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -moz-animation-delay: 10s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -webkit-animation-delay: 10s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+
+#third h6 {
+  animation: fadein 2s;
+  animation-delay: 20s;
+    -moz-animation: fadein 2s; /* Firefox */
+      -moz-animation-delay: 20s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -webkit-animation-delay: 20s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+
+#third blockquote {
+  animation: fadein 2s;
+  animation-delay: 25s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -moz-animation-delay: 25s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -webkit-animation-delay: 25s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+
+
+
+
 @keyframes fadein {
     from {
         opacity:0;
