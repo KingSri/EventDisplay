@@ -22,13 +22,44 @@ main {
 }
 #index-banner h5 {
   animation: fadein 2s;
-  animation-delay: 3s;
+  animation-delay: 1.75s;
     -moz-animation: fadein 2s; /* Firefox */
-    -moz-animation-delay: 3s; /* Firefox */
+    -moz-animation-delay: 1.75s; /* Firefox */
     -webkit-animation: fadein 2s;
-    -webkit-animation-delay: 3s; /* Safari and Chrome */
+    -webkit-animation-delay: 1.75s; /* Safari and Chrome */
     -o-animation: fadein 2s; /* Opera */
 }
+#favorite-first {
+  animation: fadein 2s;
+  animation-delay: 4s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -moz-animation-delay: 4s; /* Firefox */
+    -webkit-animation: fadein 2s;
+    -webkit-animation-delay: 4s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+#group-second {
+  animation: fadein 2s;
+  animation-delay: 6s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -moz-animation-delay: 6s; /* Firefox */
+    -webkit-animation: fadein 2s;
+    -webkit-animation-delay: 6s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+#problem-third {
+  animation: fadein 2s;
+  animation-delay: 8s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -moz-animation-delay: 8s; /* Firefox */
+    -webkit-animation: fadein 2s;
+    -webkit-animation-delay: 8s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+
+
+
+
 
 
 /* Animations: about page */
