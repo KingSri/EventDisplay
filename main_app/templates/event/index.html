@@ -14,7 +14,8 @@
           <span class="card-title">{{ event.title }}</span>
         </div>
         <div class="card-content">
-          <p>Starting on: {{ event.start_date }}</p>
+          <h6>Location: {{ event.city }}</h6>
+          <h6>Starting on: {{ event.start_date }}</h6>
         </div>
         <div class="card-action">
           <a href="{% url 'detail' event.id %}"> Event Details

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Study Sesh</title>
+  <title>Dekigoto</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,24 +13,24 @@
 </head>
 <body>
 <!-- Navbar -->
-    <nav class=grey role="navigation">
+    <nav class=black role="navigation">
       <div class="nav-wrapper container">
         <a id = "logo-container" href="{% url 'home' %}" class="brand-logo center">Dekigoto</a>
         <ul class="right hide-on-med-and-down">
           <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'index' %}">Index</a></li>
+          <li><a href="{% url 'index' %}">Events</a></li>
           {% if user.is_authenticated %}
-            <li><a href="{% url 'new_event' %}">Create an Event</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
             <li><a href="{% url 'login' %}">Log In</a></li>
           {% endif %}
         </ul>
+
         <!-- Mobile Navbar -->
         <ul id="nav-mobile" class="sidenav">
           <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'index' %}">Index</a></li>
+          <li><a href="{% url 'index' %}">Events</a></li>
           {% if user.is_authenticated %}
             <li><a href="{% url 'new_event' %}">Create an Event</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
@@ -49,14 +49,12 @@
     {% endblock %}
   </main>
 
-  <footer class="page-footer">
-    <nav class = grey>
+  <footer class="page-footer black">
       <div class="center">All Rights Reserved, &copy; Sri</div>
-    </nav>
   </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(event){
       $(document).on('click', '#like', function(event){
@@ -77,5 +75,6 @@
       });
     });
   </script>
+  <script src="{% static 'js/app.js' %}"></script>
 </body>
 </html>

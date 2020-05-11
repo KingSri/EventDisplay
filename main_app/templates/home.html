@@ -3,84 +3,107 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="welcome">
-  <h1>Welcome, {{user.get_username}}. Stay focused.</h1>
+
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container test">
+    <br><br>
+    <h1 class="header center blue-text">Welcome, {{user.get_username}}.</h1>
+    <div class="row center">
+      <h5 class="header col s12 light">What events are you interested in today?</h5>
+    </div>
+    <div class="row center">
+      <a href="{% url 'index' %}" onclick="M.toast({html: 'Redirecting: All Events'})" class="waves-effect waves-light btn-large center btn blue darken-1 pulse">Let us begin...</a>
+    </div>
+    <br><br>
+  </div>
+</div>
+
+<div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center black-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Connect with others!</h5>
+
+            <p class="light">Connect with others! Find events, and leave a comment! How can Dekigoto help you?</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center black-text"><i class="material-icons">chat</i></h2>
+            <h5 class="center">Comments</h5>
+
+            <p class="light">With our new and improved comment system, getting information about an event has never been easier! </p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center black-text"><i class="material-icons">wb_incandescent</i></h2>
+            <h5 class="center">Interested?</h5>
+
+            <p class="light">Sign up today to be a part of the Dekigoto community!</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
   </div>
 
-<p class="center-align">
-  <a href="{% url 'index' %}" onclick="M.toast({html: 'Redirecting: Check your schedule...'})" class="waves-effect waves-light btn-large center btn red darken-2">Let us begin...</a>
-  </p>
 
+<!-- IF USER IS NOT LOGGED IN -->
 
 {% else %}
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container test">
+    <br><br>
+    <h1 class="header center brown-text">Welcome, friend.</h1>
+    <div class="row center">
+      <h5 class="header col s12 light">Please sign up or log in.</h5>
+    </div>
+    <br><br>
+  </div>
+</div>
 
-  <div id="index-banner" class="parallax-container">
-        <div class="section no-pad-bot">
-          <div class="container">
-            <br><br>
-            <h1 class="header center teal-text text-lighten-2">Welcome to Dekigoto.</h1>
-            <div class="row center">
-              <h5 class="header col s12 light">A one stop shop to view, create, and participate in community events.</h5>
-            </div>
-            <div class="row center">
-              <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
-            </div>
-            <br><br>
+<div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center black-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Connect with others!</h5>
 
+            <p class="light">Connect with others! Find events, and leave a comment! How can Dekigoto help you?</p>
           </div>
         </div>
-        <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
-    </div>
 
-    <!-- Begin Icon section -->
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center black-text"><i class="material-icons">chat</i></h2>
+            <h5 class="center">Comments</h5>
 
-    <div class="container">
-        <div class="section">
-
-          <!--   Icon Section   -->
-          <div class="row">
-            <div class="col s12 m4">
-              <div class="icon-block">
-                <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-                <h5 class="center">Speeds up development</h5>
-
-                <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-              </div>
-            </div>
-
-            <div class="col s12 m4">
-              <div class="icon-block">
-                <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-                <h5 class="center">User Experience Focused</h5>
-
-                <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-              </div>
-            </div>
-
-            <div class="col s12 m4">
-              <div class="icon-block">
-                <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-                <h5 class="center">Easy to work with</h5>
-
-                <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-              </div>
-            </div>
+            <p class="light">With our new and improved comment system, getting information about an event has never been easier! </p>
           </div>
+        </div>
 
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center black-text"><i class="material-icons">wb_incandescent</i></h2>
+            <h5 class="center">Interested?</h5>
+
+            <p class="light">Sign up today to be a part of the Dekigoto community!</p>
+          </div>
         </div>
       </div>
 
-<!-- Second Parallax feature -->
-<div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div>
-      </div>
     </div>
-    <div class="parallax"><img src="/media/retro.jpeg" alt="Unsplashed background img 2"></div>
+    <br><br>
   </div>
 
+
 {% endif %}
+
 {% endblock %}
