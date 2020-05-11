@@ -138,36 +138,3 @@ def like_event(request):
     if request.is_ajax():
         html = render_to_string('event/like_section.html', context, request=request)
         return JsonResponse({'form':html})
-
-# Saved code below
-
-# for event detail (saving the comment forms from before)
-    # # comment= Comment.objects.filter(event_id = event_id)
-    # # comment_form = CommentForm()
-    # context = {
-    # 'event': event,
-    # 'comment': comment,
-    # 'comment_form': comment_form,
-    # 'total_likes': event.total_likes(),
-    # 'is_liked': is_liked,
-    # }
-
-# forms.py
-#
-# # class CommentForm(forms.ModelForm):
-# #     class Meta:
-# #         model = Comment
-# #         fields = ('body',)
-
-# admin.py
-# @admin.register(Comment)
-# class CommentAdmin(admin.ModelAdmin):
-#     list_display = ('body', 'created_on', 'event', 'author')
-#     list_filter = ('created_on', 'author')
-#     search_fields = ('body', 'author')
-
-    # path('new_comment/<int:event_id>/', views.new_comment, name='new_comment'),
-        # <!-- </div>
-        # <div class = "card">
-        #   <a href="{% url 'new_comment' event.id%}">Add a Comment</a>
-        #   </div> -->
