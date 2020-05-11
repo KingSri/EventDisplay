@@ -1,7 +1,7 @@
 # Welcome to Project Dekigoto.
 
 ## Project Overview:
-*Dekigoto* (Japanese for event) is a community based event organizer. This product seeks to embrace and make community organization much more convenient. With a clean and minimalistic look, and a easy to use interface, users can make the most of Dekigoto. Users can like an event, add a comment to an event and view other comments on the same page, and even create their own events! With this kind of accessibility, who wants the
+*Dekigoto* (Japanese for event) is a community based event organizer. This product seeks to embrace and make community organization much more convenient. With a clean and minimalistic look, and a easy to use interface, users can make the most of Dekigoto. Users can like an event, add a comment to an event and view other comments on the same page, and even create their own events! With this kind of accessibility, who wants the complexity of google calendar?
 
 Check out Dekigoto!
 [Dekigoto](https://dekigoto-ss.herokuapp.com/)
