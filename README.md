@@ -27,11 +27,13 @@ Check out Dekigoto!
 6. Users can edit/delete only their comments, and only be able to view other user posted events
 
 ## Wireframes:
-![Wireframe 1]()
-![Wireframe 2]()
-![Wireframe 3]()
+![Wireframe 1](https://imgur.com/xj6X1DY)
+![Wireframe 2](https://imgur.com/gVis9mx)
+![Wireframe 3](https://imgur.com/vT3EzaN)
 ## ERD:
-![ERD]()
+![ERD](https://imgur.com/n6CyNGE)
+## Trello:
+![Trello](https://imgur.com/PItGNYr)
 
 ## Unsolved problems/future features:
 
